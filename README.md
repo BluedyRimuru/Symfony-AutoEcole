@@ -8,21 +8,21 @@
                                                           
 ````
 
-# BST-SIO-G7-2023-AutoEcole-Web
+# Symfony AutoEcole
 
-## 🦈 • Technologies used
+## 🦈 • Technologies utilisées
 
 - HTML 5
 - PHP 8 [Download](https://www.php.net/)
 - CSS 3
 - JavaScript
 - Symfony [Download](https://symfony.com/doc/current/setup.html)
-- Figma [Website for model](https://www.figma.com/file/UBAmY0QgEw3Bw47FiJok8c/Auto-Ecole---Figma?node-id=0%3A1)
+- Figma [Site du model](https://www.figma.com/file/UBAmY0QgEw3Bw47FiJok8c/Auto-Ecole---Figma?node-id=0%3A1)
 - Mailtrap [Voir](https://mailtrap.io/)
 - 
 ## 🔧 • Installation
 
-Ce projet a entièrement été créée sous Symfony vous aurez donc besoin de celui-ci. [Voir](https://symfony.com/doc/current/setup.html)
+Ce projet a entièrement été crée sous Symfony vous aurez donc besoin de celui-ci. [Voir](https://symfony.com/doc/current/setup.html)
 
 - Cloner le projet
 ```bash
@@ -35,7 +35,7 @@ $ docker-compose create #Création du conteneur
 $ docker stop $(docker ps -a -q) #Stopper tout les conteneurs
 $ docker-compose start #Démarrer les conteneurs
 ```
-### 🛢 • Base de donnnée
+### 🛢 • Base de données
 
 - Installation des vendors et du fichier .env
 ```bash
@@ -47,9 +47,9 @@ $ composer require symfony/runtime
 Pour récuperer le MAILER_DSN, se rendre sur [MailerTrap](https://mailtrap.io/) 
 et sélectionner "Symfony 5+" dans la partie "Integrations"
 
-- Création de la base de donnée
+- Création de la base de données
 ```bash
-$ symfony console doctrine:database:create #A utiliser seulement si la base n'a pas été créer
+$ symfony console doctrine:database:create #A utiliser seulement si la base n'a pas été créée
 ```
 ```bash
 $ symfony console doctrine:migrations:migrate #Création des tables
@@ -58,12 +58,12 @@ $ symfony console doctrine:migrations:migrate #Création des tables
 $ symfony console doctrine:fixtures:load #Génération des données aléatoires
 ```
 
-## Démarrage du projet 
+## Lancer le projet 
 ```bash
 $ symfony server:start
 ```
 ## 👤 • Utilisateurs
-Mot de passes :
+Mot de passe des utilisateurs :
 ```
 Admin : "admin"
 Moniteur : "michel"
