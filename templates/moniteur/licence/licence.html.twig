@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Controller Licence !{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+
+        {% for label, messages in app.flashes(['success', 'danger']) %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <h1>Ajout d'une licence que vous venez d'obtenir :</h1>
+
+        {{ include('moniteur/licence/_form.html.twig') }}
+
+        <a href="{{ path('app_moniteur_licence') }}">back to list</a>
+
+    </div>
+{% endblock %}

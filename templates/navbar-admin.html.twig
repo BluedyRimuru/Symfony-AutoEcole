@@ -1,0 +1,38 @@
+<ul class="side-menu top">
+    <li class="{% if app.request.get('_route') == 'app_admin_accueil' %}active{% endif %}">
+        <a href="{{ path('app_admin') }}">
+            <i class='bx bxs-dashboard' ></i>
+            <span class="text">Dashboard</span>
+        </a>
+    </li>
+    <li class="{% if app.request.get('_route') == 'app_admin_analytics' %}active{% endif %}">
+        <a href="{{ path('app_admin_analytics') }}">
+            <i class='bx bxs-doughnut-chart' ></i>
+            <span class="text">Analytics</span>
+        </a>
+    </li>
+    <li class="{% if app.request.get('_route') == 'app_admin_eleve_id' %}active{% endif %}">
+        <a href="{{ path('app_admin_eleve') }}">
+            <i class='bx bxs-group' ></i>
+            <span class="text">Élèves</span>
+        </a>
+    </li>
+    <li class="{% if app.request.get('_route') == 'app_admin_moniteur' %}active{% endif %}">
+        <a href="{{ path('app_admin_moniteur') }}">
+            <i class='bx bxs-group' ></i>
+            <span class="text">Moniteurs</span>
+        </a>
+    </li>
+    <li class="{% if app.request.get('_route') == 'app_admin_categorie' %}active{% endif %}">
+        <a href="{{ path('app_admin_categorie') }}">
+            <i class='bx bxs-shopping-bag-alt' ></i>
+            <span class="text">Catégorie</span>
+        </a>
+    </li>
+    <li class="{% if app.request.get('_route') == 'app_admin_vehicule' %}active{% endif %}">
+        <a href="{{ path('app_admin_vehicule') }}">
+            <i class='bx bxs-shopping-bag-alt' ></i>
+            <span class="text">Véhicule</span>
+        </a>
+    </li>
+</ul>

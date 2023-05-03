@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+{% block body %}
+<p>Modifier mes informations personnelles :</p>
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+    {% if error != null %}
+        <div class="alert alert-warning">
+            {{ error }}
+        </div>
+    {% endif %}
+{{ include('user/profile/_form.html.twig') }}
+    <a href="{{ path('app_user_password') }}">Changer mon mot de passe</a>
+{% endblock %}

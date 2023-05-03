@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ asset('style/admin.css') }}">
+    <link rel="icon" href="{{ asset('image/voiture.png') }}" />
+    {% block stylesheets %}{% endblock %}
+    <title>{% block title %}AdminHub{% endblock %}</title>
+</head>
+{# Sélection du Thème #}
+<body class="{% if admin.theme == null %} {% elseif admin.theme == true %} dark {% endif %}">
+<!-- SIDEBAR -->
+<section id="sidebar">
+    <a href="#" class="brand">
+        <i class='bx bxs-smile'></i>
+        <span class="text">Auto Ecole</span>
+    </a>
+    {{ include('navbar-admin.html.twig') }}
+    <ul class="side-menu">
+        <li>
+            <a href="{{ path('app_logout') }}" class="logout">
+                <i class='bx bxs-log-out-circle' ></i>
+                <span class="text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</section>
+<!-- SIDEBAR -->
+
+<!-- CONTENT -->
+<section id="content">
+    <!-- NAVBAR -->
+    <nav>
+        <i class='bx bx-menu' ></i>
+        <a href="#" class="nav-link">Categories</a>
+        <form action="#">
+            <div class="form-input">
+                <input type="search" placeholder="Search...">
+                <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+            </div>
+        </form>
+{#    Changement de thème v2    #}
+        <a href="{{ path('app_admin_account') }}">
+            <i class='bx bxs-group' ></i>
+        </a>
+        <a href="{{ path("app_admin_theme") }}">
+            <i class='bx bxs-adjust' ></i>
+        </a>
+        <a href="{{ path('app_admin_photo') }}" class="profile">
+            {% if admin.image %}
+                <img src="{{ asset(admin.image.path) }}" alt="Photo de profil">
+            {% else %}
+                <img src="{{ asset('image/avatar_default.png') }}">
+            {% endif %}
+        </a>
+    </nav>
+    <!-- NAVBAR -->
+
+    <!-- MAIN -->
+    <main>
+        {% block headtitle %}{% endblock %}
+        {% block boxinfos %}{% endblock %}
+        <div class="table-data">
+            {% block table %}{% endblock %}
+            {% block tables %}{% endblock %}
+        </div>
+    </main>
+    <!-- MAIN -->
+</section>
+<!-- CONTENT -->
+
+<script src="{{ asset('script/admin.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"
+        integrity="sha256-7PzqE1MyWa/IV5vZumk1CVO6OQbaJE4ns7vmxuUP/7g=" crossorigin="anonymous"></script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

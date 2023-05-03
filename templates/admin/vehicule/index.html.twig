@@ -1,0 +1,100 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Liste des Véhicules{% endblock %}
+
+{# Catégories #}
+{% block headtitle %}
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right' ></i></li>
+                <li>
+                    <a class="active" href="{{ path('app_admin_vehicule') }}">Véhicule</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{# Informations générales #}
+{% block boxinfos %}
+    <ul class="box-info">
+        <li>
+            <i class='bx bxs-dollar-circle' ></i>
+            <span class="text">
+						<h3>{{ VehiculeUitlise }}</h3>
+						<p>Véhicule le plus utilisé</p>
+					</span>
+        </li>
+    </ul>
+{% endblock %}
+
+{# Commandes récentes - Non terminé (Accueil) #}
+{% block table %}
+    <div class="order">
+        <div class="head">
+            {% for label, messages in app.flashes(['danger', 'warning']) %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            <h3>Liste des véhicules :</h3>
+            <i class='bx bx-search' ></i>
+            <i class='bx bx-filter' ></i>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Immatriculation</th>
+                <th>Libelle Catégorie</th>
+                <th>Marque</th>
+                <th>Modèle</th>
+                <th>Année</th>
+                <th>Suppression</th>
+                <th>Modification</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for vehicule in vehicules %}
+                <tr>
+                    <td>{{ vehicule.immatriculation }}</td>
+                    <td>{{ vehicule.codecategorie.libelle }}</td>
+                    <td>{{ vehicule.marque }}</td>
+                    <td>{{ vehicule.modele }}</td>
+                    <td>{{ vehicule.annee }}</td>
+                    <td> <a href="{{ path('app_admin_delete_vehicule',{ 'idVehi': vehicule.id}) }}">Supprimer</a></td>
+                    <td> <a href="{{ path('app_admin_update_vehicule',{ 'idVehi': vehicule.id}) }}">Modifier</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{# Todos - 2 #}
+{% block tables %}
+    <div class="todo">
+        <div class="order">
+            <div class="head">
+                <h3>Ajout d'un véhicule</h3>
+            </div>
+            {% for label, messages in app.flashes(['success', 'warning']) %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+<h1>Bienvenue {{ prenom }} !</h1>
+
+<p>
+    Nous vous remercions pour la confiance accordée.
+    <br>
+{#    Pour vous connecter, veuillez vous connecter à votre compte à cette adresse :#}
+    Votre mot de passe est le suivant :
+    <p id="pwd" style="color: red">{{ password }}<p>
+{#    <button id="copy-text-btn">Copier</button>#}
+
+
+{#    Please confirm your email address by clicking the following link: <br><br>#}
+{#    <a href="{{ signedUrl|raw }}">Confirm my Email</a>.#}
+{#    This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.#}
+
+    <br> S'il vous plait, veuillez le changer juste après votre première connexion !
+</p>
+
+<p>
+    Cordialement,<br>
+    L'équipe ORT Auto.
+</p>
+
+{#<script>#}
+{#    function copyText(htmlElement){#}
+{#        let elementText = htmlElement.innerText;#}
+
+{#        let inputElement = document.createElement('input');#}
+{#        inputElement.setAttribute('value',elementText);#}
+{#        document.body.appendChild(inputElement);#}
+{#        inputElement.select();#}
+{#        document.execCommand('copy');#}
+{#        inputElement.parentNode.removeChild(inputElement);#}
+{#    }#}
+{#    document.querySelector('#copy-text-btn').onclick = function (){#}
+{#        copyText(document.querySelector('#pwd'));#}
+{#    }#}
+{#</script>#}

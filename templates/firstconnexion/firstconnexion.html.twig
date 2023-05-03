@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccueilEleveController!{% endblock %}
+
+{% block body %}
+<p>Bienvenue à vous sur ORT Auto, veuillez modifier dès à présent votre mot de passe :</p>
+    {% for label, messages in app.flashes(['success', 'warning', 'danger']) %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+{{ include('firstconnexion/_form.html.twig') }}
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_admin') }}">Home page</a>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Liste des élèves{% endblock %}
+
+{# Catégories #}
+{% block headtitle %}
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right' ></i></li>
+                <li>
+                    {# Changement de lien #}
+                    <a class="active" href="{{ path('app_admin_eleve') }}">Elèves</a>
+                </li>
+                <li><i class='bx bx-chevron-right' ></i></li>
+                <li>
+                    {# Changement de lien #}
+                    <a class="active" href="{{ path('app_admin_eleve_add') }}">Ajouter un élève</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{# Informations générales #}
+{% block boxinfos %}
+
+{% endblock %}
+
+{# Commandes récentes - Non terminé (Accueil) #}
+{% block table %}
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Liste des élèves :</h3>
+                <i class='bx bx-search' ></i>
+                <i class='bx bx-filter' ></i>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Prénom complet</th>
+                    <th>Telephone</th>
+                    <th>Status</th>
+                    <th>Planning</th>
+                    <th>Informations</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for eleve in eleves %}
+                    <tr>
+                        {#                            <td>{{ eleve.roles }}</td>#}
+                        <td>
+{#                            <img src="{{ asset('uploads/profiles/64273862e1ded.jpg') }}" alt="Photo de profil">#}
+                            {% if eleve.path %}
+                                <img src="{{ asset(eleve.path) }}" alt="Photo de profil">
+                            {% else %}
+                                <img src="{{ asset('image/avatar_default.png') }}">
+                            {% endif %}
+                            <p>{{ eleve.nom }} {{ eleve.prenom }}</p>
+                        </td>
+                        <td>{{ eleve.telephone }}</td>
+                        <td><span class="status {{ eleve.isVerified ? 'completed' : 'pending' }}">{{ eleve.isVerified ? 'Vérifié' : 'Non vérifié' }}</span></td>
+                        <td><a href="{{ path('app_admin_eleve_planning', {'id' : eleve.id}) }}" style="text-decoration: none; color:{% if admin.theme == null %} #422424 {% elseif admin.theme == true %} white {% endif %};">Accéder</a></td>
+                        <td><a href="{{ path('app_admin_user_show', { 'id': eleve.id}) }}" style="text-decoration: none; color:{% if admin.theme == null %} #422424 {% elseif admin.theme == true %} white {% endif %};">Voir</a></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {#        Modification du code à effectuer        #}
+            <div style="display: flex; justify-content: center;">
+                <a class="styletesta" href="{{ path('app_admin_eleve_id', { 'id': page_actuelle - 1}) }}"> < &nbsp</a>
+                <p class="styletesta">{{ page_actuelle }}</p>
+                <a class="styletesta" href="{{ path('app_admin_eleve_id', { 'id': page_actuelle + 1 }) }}">&nbsp > </a>
+                <style>
+                    .styletesta {
+                        text-decoration: none;
+                        color: white;
+                    }
+                </style>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{# Todos - 2 #}
+{% block tables %}
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{# Catégories #}
+{% block headtitle %}
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right' ></i></li>
+                <li>
+                    <a class="active" href="{{ path('app_admin_moniteur') }}">Moniteur</a>
+                </li>
+                <li><i class='bx bx-chevron-right' ></i></li>
+                <li>
+                    <a class="active" href="{{ path('app_admin_moniteur_add') }}">Ajouter un moniteur</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{# Informations générales #}
+{% block boxinfos %}
+
+{% endblock %}
+
+{# Commandes récentes - Non terminé (Accueil) #}
+{% block table %}
+    <div class="order">
+        <div class="head">
+            <h3>Ajout d'un moniteur :</h3>
+            <i class='bx bx-search' ></i>
+            <i class='bx bx-filter' ></i>
+        </div>
+        {% for label, messages in app.flashes(['success', 'warning']) %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {{ include('admin/moniteur/_form.html.twig') }}
+    </div>
+{% endblock %}
+
+{# Todos - 2 #}
+{% block tables %}
+
+{% endblock %}

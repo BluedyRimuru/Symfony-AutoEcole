@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eleve index{% endblock %}
+
+{% block body %}
+    <h1>Eleve index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Sexe</th>
+            <th>Datedenaissance</th>
+            <th>Adresse</th>
+            <th>Codepostal</th>
+            <th>Ville</th>
+            <th>Telephone</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for moniteur in moniteurs %}
+            <tr>
+                <td>{{ moniteur.id }}</td>
+                <td>{{ moniteur.nom }}</td>
+                <td>{{ moniteur.prenom }}</td>
+                <td>
+                    {% if moniteur.sexe == 1 %}
+                        Femme
+                    {% elseif moniteur.sexe == 2 %}
+                        Homme
+                    {% elseif moniteur.sexe == 3 %}
+                        Autre
+                    {% elseif moniteur.sexe == 4 %}
+                        N'a pas souhaité répondre
+                    {% endif %}
+                </td>
+                <td>{{ moniteur.datedenaissance ? moniteur.datedenaissance|date('d-m-Y') : '' }}</td>
+                <td>{{ moniteur.adresse }}</td>
+                <td>{{ moniteur.codepostal }}</td>
+                <td>{{ moniteur.ville }}</td>
+                <td>{{ moniteur.telephone }}</td>
+                <td>
+{#                    <a href="{{ path('app_eleve_show', {'id': eleve.id}) }}">show</a>#}
+{#                    <a href="{{ path('app_eleve_edit', {'id': eleve.id}) }}">edit</a>#}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{#    <a href="{{ path('app_eleve_new') }}">Create new</a>#}
+{% endblock %}

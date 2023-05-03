@@ -1,0 +1,81 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{# Catégories #}
+{% block headtitle %}
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right' ></i></li>
+                <li>
+                    <a class="active" href="{{ path('app_admin_account') }}">Analytics</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{# Informations générales #}
+{% block boxinfos %}
+
+{% endblock %}
+
+{# Commandes récentes - Non terminé (Accueil) #}
+{% block table %}
+    <div>
+        {% for label, messages in app.flashes(['success', 'danger']) %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <p>Photo de profil actuelle : </p> <br/>
+        <img width="700" src="{{ asset(admin.image.path) }}" alt="Photo de profil">
+    </div>
+    <div>
+        {{ form_start(form) }}
+        <div class="form-group">
+            <p>Prénom </p>
+            {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            <p>Nom </p>
+            {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            <p>Sexe </p>
+            {{ form_widget(form.sexe, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            <p>Adresse </p>
+            {{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            <p>Code Postal </p>
+            {{ form_widget(form.codepostal, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            <p>Ville </p>
+            {{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            <p>Téléphone </p>
+            {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        {{ form_widget(form) }}
+        <br>
+        <button class="button-save">{{ button_label|default('Sauvegarder') }}</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{# Todos - 2 #}
+{% block tables %}
+
+{% endblock %}

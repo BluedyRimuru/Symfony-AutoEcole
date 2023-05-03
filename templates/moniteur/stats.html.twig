@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes statistiques{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        {% for label, messages in app.flashes(['success', 'warning', 'danger', 'primary']) %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <div style="display: flex; justify-content: center; align-content: center;">
+            <canvas id="barCanvas" aria-label="chart" role="img"></canvas>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.1/chart.umd.min.js"
+            integrity="sha512-RnIvaWVgsDUVriCOO7ZbDOwPqBY1kdE8KJFmJbCSFTI+a+/s+B1maHN513SFhg1QwAJdSKbF8t2Obb8MIcTwxA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {#    <script src="{{ asset('script/statistiques.js') }}">#}
+    <script>
+        const barCanvas = document.getElementById("barCanvas");
+        // bar, pie, doughnut, and more... at https://www.chartjs.org/docs/latest/charts/doughnut.html
+        const barChart = new Chart(barCanvas, {
+            type: "pie",
+            data: {
+                labels: ["CA Total", "CA Semaine"],
+                datasets: [{
+                    data: [{{ TotalPrice }},{{ SemainePrice }}]
+                }]
+            }
+        })
+    </script>
+{% endblock %}

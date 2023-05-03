@@ -1,0 +1,30 @@
+<a class="logo" href="
+{% if is_granted('ROLE_MONITEUR') %}
+{{ path('app_moniteur') }}
+{% elseif is_granted('ROLE_USER') %}
+{{ path('app_user') }}
+{% endif %}
+"><img src="{{ asset('image/test.png') }}" alt="logo" width="100"></a>
+<nav>
+    <ul class="nav__links">
+        {% if is_granted('ROLE_MONITEUR') %}
+            <li><a href="{{ path('app_moniteur_licence') }}">Ajout d'une licence</a></li>
+            <li><a href="{{ path('app_moniteur_planning') }}">Mon Planning</a></li>
+            <li><a href="{{ path('app_moniteur_stats') }}">Mes Statistiques</a></li>
+            <li><a href="{{ path('app_moniteur_profil') }}">Mon Profil</a></li>
+            <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+        {% elseif is_granted('ROLE_USER') %}
+        <li><a href="{{ path('app_user_lecon_nouvelle') }}">S'inscrire à une leçon</a></li>
+        <li><a href="{{ path('app_user_planning') }}">Mon Planning</a></li>
+        <li><a href="{{ path('app_user_stats') }}">Mes Statistiques</a></li>
+        <li><a href="{{ path('app_user_profil') }}">Mon Profil</a></li>
+        <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% if is_granted('ROLE_MONITEUR') %}
+<a class="cta" href="{{ path('app_moniteur') }}">Accueil</a>
+{% elseif is_granted('ROLE_USER') %}
+<a class="cta" href="{{ path('app_user') }}">Accueil</a>
+{% endif %}
+<p class="menu cta">Menu</p>

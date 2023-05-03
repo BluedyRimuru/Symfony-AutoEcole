@@ -1,0 +1,19 @@
+<a href="{{ path('app_admin_accueil') }}">Dashboard</a>
+{% for message in app.flashes('error') %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+
+        {{ form_label(form.image) }}
+        {{ form_widget(form.image) }}
+        {% if form.image.vars.value is not null and form.image.vars.value.path is defined %}
+            <img src="{{ asset('uploads/profiles/' ~ form.image.vars.value.path) }}" alt="Ma photo de profil" />
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+
+{{ form_end(form) }}

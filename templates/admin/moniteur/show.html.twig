@@ -1,0 +1,109 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{# Catégories #}
+{% block headtitle %}
+
+{% endblock %}
+
+{# Informations générales #}
+{% block boxinfos %}
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right' ></i></li>
+                <li>
+                    <a class="active" href="{{ path('app_admin_moniteur') }}">Moniteur</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <ul class="box-info">
+        <li>
+            <i class='bx bxs-calendar-check' ></i>
+            <span class="text">
+						<h3>{{ nbLecons }}</h3>
+						<p>Nombre de leçons</p>
+					</span>
+        </li>
+
+        <li>
+            <i class='bx bxs-dollar-circle' ></i>
+            <span class="text">
+						<h3>{{ caMoniteur != null ? caMoniteur : 0 }} €</h3>
+						<p>Chiffre d'affaire du moniteur</p>
+					</span>
+        </li>
+        <li>
+            <i class='bx bxs-dollar-circle' ></i>
+            <span class="text">
+						<h3>{{ resteAPayer != null ? resteAPayer : 0 }} €</h3>
+						<p>Montant restant à payer</p>
+					</span>
+        </li>
+    </ul>
+{% endblock %}
+
+{# Commandes récentes - Non terminé (Accueil) #}
+{% block table %}
+    <div class="order">
+        <div class="head">
+            <h3>Informations du moniteur :</h3>
+            <i class='bx bx-search' ></i>
+            <i class='bx bx-filter' ></i>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Nom complet</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Vérifié</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ user.nom }} {{ user.prenom }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.telephone }}</td>
+                <td><span class="status {{ user.isVerified ? 'completed' : 'pending' }}">{{ user.isVerified ? 'Oui' : 'Non' }}</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{# Todos - 2 #}
+{% block tables %}
+    <div class="order">
+        <div class="head">
+            <h3>Leçons du moniteur (Limité à 5)</h3>
+            <i class='bx bx-plus' ></i>
+            <i class='bx bx-filter' ></i>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Est réglée ?</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for lecon in leconsMoniteur %}
+                <tr>
+                    <td>{{ lecon.date }}</td>
+                    <td>{{ lecon.heure }}</td>
+                    <td>{{ lecon.reglee == 1 ? 'Oui' : 'Non' }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

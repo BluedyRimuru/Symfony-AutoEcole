@@ -1,0 +1,117 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{# Catégories #}
+{% block headtitle %}
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right' ></i></li>
+                <li>
+                    <a class="active" href="{{ path('app_admin') }}">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{# Informations générales #}
+{% block boxinfos %}
+    <ul class="box-info">
+        <li>
+            <i class='bx bxs-calendar-check' ></i>
+            <span class="text">
+						<h3>{{ nbLecons }}</h3>
+						<p>Nombre de leçons</p>
+					</span>
+        </li>
+        <li>
+            <i class='bx bxs-group' ></i>
+            <span class="text">
+						<h3>{{ nbEleve }}</h3>
+						<p>Elèves inscrits !</p>
+					</span>
+        </li>
+        <li>
+            <i class='bx bxs-dollar-circle' ></i>
+            <span class="text">
+						<h3>{{ totalVentes ? totalVentes : '0' }} €</h3>
+						<p>Total des ventes</p>
+					</span>
+        </li>
+    </ul>
+{% endblock %}
+
+{# Commandes récentes - Non terminé (Accueil) #}
+{% block table %}
+    <div class="order">
+        <div class="head">
+            <h3>Commandes récentes</h3>
+            <i class='bx bx-search' ></i>
+            <i class='bx bx-filter' ></i>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Utilisateur</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in lastOrder %}
+                <tr>
+                    <td>
+                        <img src="{{ asset('image/avatar_default.png') }}">
+                        <p>{{ order.nom }}</p>
+                    </td>
+                    <td>{{ order.date|date("m-d-Y") }}</td>
+                    <td><span class="status {{ order.reglee == 1 ? 'completed' : 'pending' }}">{{ order.reglee == 1 ? 'Payé' : 'Non payé' }}</span></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Pas de commandes récentes.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{# Todos - 2 #}
+{% block tables %}
+    <div class="todo">
+        <div class="head">
+            <h3>Todos</h3>
+            <i class='bx bx-plus' ></i>
+            <i class='bx bx-filter' ></i>
+        </div>
+        <ul class="todo-list">
+            <li class="completed">
+                <p>Todo List</p>
+                <i class='bx bx-dots-vertical-rounded' ></i>
+            </li>
+            <li class="completed">
+                <p>Todo List</p>
+                <i class='bx bx-dots-vertical-rounded' ></i>
+            </li>
+            <li class="not-completed">
+                <p>Todo List</p>
+                <i class='bx bx-dots-vertical-rounded' ></i>
+            </li>
+            <li class="completed">
+                <p>Todo List</p>
+                <i class='bx bx-dots-vertical-rounded' ></i>
+            </li>
+            <li class="not-completed">
+                <p>Todo List</p>
+                <i class='bx bx-dots-vertical-rounded' ></i>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{# Catégories #}
+{% block headtitle %}
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right' ></i></li>
+                <li>
+                    <a class="active" href="{{ path('app_admin_categorie') }}">Categorie</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{# Informations générales #}
+{% block boxinfos %}
+    <ul class="box-info">
+    </ul>
+{% endblock %}
+
+{# Commandes récentes - Non terminé (Accueil) #}
+{% block table %}
+    <div class="order">
+        <div class="head">
+            <h3>Information de la catégorie :</h3>
+            <i class='bx bx-search' ></i>
+            <i class='bx bx-filter' ></i>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Libellé</th>
+                <th>Prix</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ categorie.libelle }}</td>
+                    <td>{{ categorie.prix }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{# Todos - 2 #}
+{% block tables %}
+    <div class="todo">
+        <div class="order">
+            <div class="head">
+                <h3>Modifier la catégorie</h3>
+            </div>
+            {% for label, messages in app.flashes(['success', 'warning']) %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

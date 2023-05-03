@@ -1,0 +1,76 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{# Catégories #}
+{% block headtitle %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right' ></i></li>
+                <li>
+                    <a class="active" href="{{ path('app_admin_analytics') }}">Analytics</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{# Informations générales #}
+{% block boxinfos %}
+
+{% endblock %}
+
+{# Commandes récentes - Non terminé (Accueil) #}
+{% block table %}
+    <div>
+        <h1>Véhicules les plus utilisés</h1>
+        <canvas id="chartVehicule"></canvas>
+    </div>
+    <div>
+        <h1>Moniteurs les + sollicités</h1>
+        <canvas id="chartMoniteur"></canvas>
+    </div>
+    <div>
+        <h1>Salut</h1>
+        <canvas id="chart3"></canvas>
+    </div>
+
+
+    <script>
+        const barCanvas = document.getElementById("chartVehicule");
+        // bar, pie, doughnut, and more... at https://www.chartjs.org/docs/latest/charts/doughnut.html
+        const barChart = new Chart(barCanvas, {
+            type: "doughnut",
+            data: {
+                labels: [{% for vehicule in vehicules %}"{{ vehicule.immatriculation }}",{% endfor %}],
+                datasets: [{
+                    data: [{% for vehicule in vehicules %}"{{ vehicule.nbVehicule }}",{% endfor %}]
+                }]
+            }
+        })
+
+        const barCanvas2 = document.getElementById("chartMoniteur");
+        // bar, pie, doughnut, and more... at https://www.chartjs.org/docs/latest/charts/doughnut.html
+        const barChart2 = new Chart(barCanvas2, {
+            type: "doughnut",
+            data: {
+                labels: [{% for moniteur in moniteurs %}"{{ moniteur.nom }}",{% endfor %}],
+                datasets: [{
+                    data: [{% for moniteur in moniteurs %}"{{ moniteur.nbMoniteur    }}",{% endfor %}],
+                    // backgroundColor: ['#4AF745','#900C3F'],
+                }]
+            },
+        })
+    </script>
+{% endblock %}
+
+{# Todos - 2 #}
+{% block tables %}
+
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{# Catégories #}
+{% block headtitle %}
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li><i class='bx bx-chevron-right' ></i></li>
+                <li>
+                    <a class="active" href="{{ path('app_admin_categorie') }}">Categorie</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{# Informations générales #}
+{% block boxinfos %}
+    <ul class="box-info">
+        {#            <li>#}
+        {#                <i class='bx bxs-calendar-check' ></i>#}
+        {#                <span class="text">#}
+        {#						<h3>{{ nbLecons }}</h3>#}
+        {#						<p>Nombre de leçons</p>#}
+        {#					</span>#}
+        {#            </li>#}
+        {#            <li>#}
+        {#                <i class='bx bxs-group' ></i>#}
+        {#                <span class="text">#}
+        {#						<h3>{{ nbEleve }}</h3>#}
+        {#						<p>Elèves inscrits !</p>#}
+        {#					</span>#}
+        {#            </li>#}
+        <li>
+            <i class='bx bxs-dollar-circle' ></i>
+            <span class="text">
+						<h3>{{ locomotion }}</h3>
+						<p>Locomotion la plus utilisée</p>
+					</span>
+        </li>
+    </ul>
+{% endblock %}
+
+{# Commandes récentes - Non terminé (Accueil) #}
+{% block table %}
+    <div class="order">
+        <div class="head">
+            {% for label, messages in app.flashes(['danger', 'warning']) %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            <h3>Liste des catégories :</h3>
+            <i class='bx bx-search' ></i>
+            <i class='bx bx-filter' ></i>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Libellé</th>
+                <th>Prix</th>
+                <th>Suppression</th>
+                <th>Modification</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for categorie in categories %}
+                <tr>
+                    <td>{{ categorie.libelle }}</td>
+                    <td>{{ categorie.prix }}</td>
+                    <td> <a href="{{ path('app_admin_delete_categorie',{ 'idCat': categorie.id}) }}">Supprimer</a></td>
+                    <td> <a href="{{ path('app_admin_update_categorie',{ 'idCat': categorie.id}) }}">Modifier</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{# Todos - 2 #}
+{% block tables %}
+    <div class="todo">
+        <div class="order">
+            <div class="head">
+                <h3>Ajout d'une catégorie</h3>
+            </div>
+            {% for label, messages in app.flashes(['success', 'warning']) %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
