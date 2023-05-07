@@ -19,7 +19,7 @@
 - Symfony [Download](https://symfony.com/doc/current/setup.html)
 - Figma [Site du model](https://www.figma.com/file/UBAmY0QgEw3Bw47FiJok8c/Auto-Ecole---Figma?node-id=0%3A1)
 - Mailtrap [Voir](https://mailtrap.io/)
-- 
+
 ## 🔧 • Installation
 
 Ce projet a entièrement été crée sous Symfony vous aurez donc besoin de celui-ci. [Voir](https://symfony.com/doc/current/setup.html)
