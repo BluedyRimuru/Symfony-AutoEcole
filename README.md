@@ -44,7 +44,7 @@ $ symfony console doctrine:fixtures:load # Génération d'un jeu de données al�
 ```
 
 Nous proposons aussi l'installation via [Docker](https://www.docker.com/) :
-
+ 
 ```shell
 $ docker-compose create # Création du conteneur
 $ docker stop $(docker ps -a -q) # Stopper tous les conteneurs
